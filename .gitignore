@@ -1,0 +1,4 @@
+.DS_Store
+incoming-photos/
+node_modules/
+*.log
