@@ -64,6 +64,14 @@
   ]
 }
 </script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18363583498"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-18363583498');
+</script>
 </head>
 <body>
 
@@ -214,6 +222,21 @@
     styles: { branding: { brandColor: "#d94a3e" } },
     hideEventTypeDetails: false,
     layout: "month_view"
+  });
+
+  // Fire the Google Ads conversion only on a real completed booking,
+  // not on button clicks or page loads.
+  Cal.ns["free-estimate"]("on", {
+    action: "bookingSuccessful",
+    callback: function () {
+      if (typeof gtag === "function") {
+        gtag('event', 'conversion', {
+          'send_to': 'AW-18363583498/8cLACP2cjOUcEIqYuLRE',
+          'value': 1.0,
+          'currency': 'USD'
+        });
+      }
+    }
   });
 </script>
 
